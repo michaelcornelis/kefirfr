@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: http://fr.kefir.info/sitemap.xml
