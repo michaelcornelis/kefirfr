@@ -1,28 +1,62 @@
-// Sticky header position on page scrolling up
-const header = document.querySelector('.js-header');
-const stickyClass = 'sticky';
-let lastScrollTop = 0;
-let isWaiting = false;
+// Theme: Bespoke
+// Sticky menu
+function getNavbarHeight() {
+	const rootStyles = getComputedStyle(document.documentElement);
+	const navbarHeight = rootStyles.getPropertyValue('--navbar-height');
+	return parseInt(navbarHeight); // Convert to integer
+}
+
+// Sticky menu
+const header = document.getElementById("js-header");
+const stickyMenu = document.getElementById("js-navbar-menu");
+const hiddenClass = "is-hidden";
+const visibleClass = "is-visible";
+const stickyClass = "is-sticky";
+let lastScrollY = 0;
+let isTicking = false;
+
+// Function to get the actual height of the header element
+function getNavbarHeight() {
+    return header.offsetHeight;
+}
 
 window.addEventListener('scroll', () => {
-    if (!isWaiting) {
-        window.requestAnimationFrame(() => {
-            let currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+    const navbarHeight = getNavbarHeight(); // Get the actual navbar height
 
-            if (currentScroll > lastScrollTop) {
-                header.classList.remove(stickyClass);
-            } else if (currentScroll < lastScrollTop && currentScroll > 0) {
-                header.classList.add(stickyClass);
-            } else if (currentScroll <= 0) {
-                header.classList.remove(stickyClass);
+    if (!isTicking) {
+        window.requestAnimationFrame(() => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > navbarHeight) {
+                // Scrolling down and past the navbar height
+                header.classList.remove(visibleClass);
+                header.classList.add(hiddenClass);
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up
+                header.classList.remove(hiddenClass);
+                header.classList.add(visibleClass);
+
+                if (stickyMenu) {
+                    stickyMenu.classList.add(stickyClass);
+                }
             }
 
-            lastScrollTop = currentScroll;
-            isWaiting = false;
+            if (currentScrollY <= 1) {
+                // At the top of the page
+                header.classList.remove(visibleClass);
+
+                if (stickyMenu) {
+                    stickyMenu.classList.remove(stickyClass);
+                }
+            }
+
+            lastScrollY = currentScrollY;
+            isTicking = false;
         });
-        isWaiting = true;
+
+        isTicking = true;
     }
-}, false);
+});
 
 // Dropdown menu
 (function (menuConfig) {
@@ -456,29 +490,30 @@ window.addEventListener('scroll', () => {
 // Load search input area
 const searchButton = document.querySelector('.js-search-btn');
 const searchOverlay = document.querySelector('.js-search-overlay');
-const searchInput = document.querySelector('input[type="search"]');
+const searchInput = document.querySelector('[type="search"]');
 
-if (searchButton && searchOverlay && searchInput) {
-    searchButton.addEventListener('click', (event) => {
-        event.stopPropagation();
+if (searchButton && searchOverlay) {
+    searchButton.addEventListener('click', (e) => {
+        e.stopPropagation();
         searchOverlay.classList.toggle('expanded');
 
-        if (searchOverlay.classList.contains('expanded')) {
+        if (searchInput) {
             setTimeout(() => {
-                searchInput.focus();
+                if (searchOverlay.classList.contains('expanded')) {
+                    searchInput.focus();
+                }
             }, 60);
         }
     });
 
-    searchOverlay.addEventListener('click', (event) => {
-        event.stopPropagation();
+    searchOverlay.addEventListener('click', (e) => {
+        e.stopPropagation();
     });
 
     document.body.addEventListener('click', () => {
         searchOverlay.classList.remove('expanded');
     });
 }
-
 
 // Share buttons pop-up
 (function () {
@@ -552,32 +587,6 @@ if (searchButton && searchOverlay && searchInput) {
     }
 })();
 
-// Back to top
-document.addEventListener('DOMContentLoaded', () => {
-    const backToTopButton = document.getElementById('backToTop');
-
-    if (backToTopButton) {
-        const backToTopScrollFunction = () => {
-            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-                backToTopButton.classList.add('is-visible');
-            } else {
-                backToTopButton.classList.remove('is-visible');
-            }
-        };
-
-        const backToTopFunction = () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        };
-
-        window.addEventListener('scroll', backToTopScrollFunction);
-        backToTopButton.addEventListener('click', backToTopFunction);
-    }
-});
-
-
 // Responsive embeds script
 (function () {
     let wrappers = document.querySelectorAll('.post__video, .post__iframe');
@@ -617,3 +626,223 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 })();
+
+// Accordion
+(function (accordionConfig) {
+	/**
+	 * Merge default config with the theme overrided ones
+	 */
+	var defaultConfig = {
+		 // behaviour
+		 animationSpeed: 300,
+		 openOnlyOne: true,
+		 openFirstItem: false,
+		 // selectors
+		 wrapperSelector: '.accordion',
+		 titleSelector: 'h3',
+		 contentSelector: 'div',
+		 // CSS classes
+		 contentWrapperClass: 'accordion-content-wrapper',
+		 openedItemClass: 'is-open',
+		 // Other
+		 idFormat: 'faq{{index}}-{{subindex}}',
+		 openViaURL: false
+	};
+
+	var config = {};
+
+	Object.keys(defaultConfig).forEach(function(key) {
+		 config[key] = defaultConfig[key];
+	});
+
+	if (typeof accordionConfig === 'object') {
+		 Object.keys(accordionConfig).forEach(function(key) {
+			  config[key] = accordionConfig[key];
+		 });
+	}
+
+	/**
+	 * Accordion initializer
+	 */
+	function init () {
+		 var accordions = document.querySelectorAll(config.wrapperSelector);
+		 
+		 if (!accordions.length) {
+			  return;
+		 }
+
+		 for (var i = 0; i < accordions.length; i++) {
+			  initAccordion(accordions[i], i);
+		 }
+	}
+
+	/**
+	 * Initialize a specific accordion
+	 */
+	function initAccordion (wrapper, index) {
+		 var allDirectChildElements = wrapper.children;
+		 var titles = [];
+		 var contents = [];
+
+		 for (var i = 0; i < allDirectChildElements.length; i++) {
+			  if (allDirectChildElements[i].matches(config.titleSelector)) {
+					titles.push(allDirectChildElements[i]);
+			  } else if (allDirectChildElements[i].matches(config.contentSelector)) {
+					contents.push(allDirectChildElements[i]);
+			  }
+		 }
+
+		 if (!titles.length && !contents.length) {
+			  for (var i = 0; i < allDirectChildElements.length; i++) {
+					for (var j = 0; j < allDirectChildElements[i].children.length; j++) {
+						 if (allDirectChildElements[i].children[j].matches(config.titleSelector)) {
+							  titles.push(allDirectChildElements[i].children[j]);
+						 } else if (allDirectChildElements[i].children[j].matches(config.contentSelector)) {
+							  contents.push(allDirectChildElements[i].children[j]);
+						 }
+					}  
+			  } 
+		 }
+
+		 for (var j = 0; j < titles.length; j++) {
+			  titles[j].setAttribute('data-index', j);
+			  titles[j].addEventListener('click', function (e) {
+					e.preventDefault();
+					var index = parseInt(e.target.getAttribute('data-index'), 10);
+
+					if (e.target.classList.contains(config.openedItemClass)) {
+						 closeItem(titles, contents, index, true);
+					} else {
+						 if ((config.openOnlyOne || wrapper.getAttribute('data-open-only-one') === 'true') && wrapper.getAttribute('data-open-only-one') !== 'false') {
+							  closeAllItems(titles, contents, index);
+						 }
+
+						 openItem(titles, contents, index, true);
+					}
+			  });
+		 }
+
+		 for (var k = 0; k < contents.length; k++) {
+			  contents[k].setAttribute('data-index', k);
+			  contents[k].innerHTML = '<div class="' + config.contentWrapperClass + '">' + contents[k].innerHTML + '</div>';
+		 }
+
+		 addIdAttributes(index, titles, contents);
+		 initARIA(titles);
+
+		 if (hasItemToOpenViaURL(wrapper)) {
+			  var titleToOpen = document.querySelector('*[aria-controls="' + window.location.hash.replace('#', '') + '"]');
+			  var indexOfTitleToOpen = parseInt(titleToOpen.getAttribute('data-index'), 10);
+			  openItem(titles, contents, indexOfTitleToOpen);
+		 } else if ((config.openFirstItem || wrapper.getAttribute('data-open-first-item') === 'true') && wrapper.getAttribute('data-open-first-item') !== 'false') {
+			  openItem(titles, contents, 0);
+		 }
+	}
+
+	/**
+	 * Check if there is an item to open from URL
+	 */
+	function hasItemToOpenViaURL (wrapper) {
+		 if (!config.openViaURL) {
+			  return false;
+		 }
+
+		 if (window.location.hash.length <= 1) {
+			  return false;
+		 }
+		 
+		 if (!document.querySelector(window.location.hash)) {
+			  return false;
+		 }
+
+		 if (!wrapper.querySelector(window.location.hash)) {
+			  return false;
+		 }
+
+		 return true;
+	}
+
+	/**
+	 * Open specific item
+	 */
+	function openItem (titles, contents, index, updateHistory = false) {
+		 titles[index].classList.add(config.openedItemClass);
+		 titles[index].setAttribute('aria-expanded', 'true');
+		 contents[index].classList.add(config.openedItemClass);
+		 contents[index].style.height = '0px';
+		 var contentWrapper = contents[index].querySelector('.' + config.contentWrapperClass);
+		 var contentHeight = contentWrapper.getBoundingClientRect().height;
+
+		 if (updateHistory) {
+			  history.pushState({}, null, '#' + titles[index].getAttribute('aria-controls'));
+		 }
+		 
+		 setTimeout(function () {
+			  contents[index].style.height = contentHeight + 'px';
+
+			  setTimeout(function () {
+					if (titles[index].getAttribute('aria-expanded') === 'true') {
+						 contents[index].style.height = 'auto';
+					}
+			  }, config.animationSpeed);
+		 }, 0);
+	}
+
+	/**
+	 * Close specific item
+	 */
+	function closeItem (titles, contents, index, updateHistory = false) {
+		 titles[index].classList.remove(config.openedItemClass);
+		 titles[index].setAttribute('aria-expanded', 'false');
+		 contents[index].classList.remove(config.openedItemClass);
+		 var contentWrapper = contents[index].querySelector('.' + config.contentWrapperClass);
+		 var contentHeight = contentWrapper.getBoundingClientRect().height;
+		 contents[index].style.height = contentHeight + 'px';
+
+		 if (updateHistory) {
+			  history.replaceState(null, null, ' ');
+		 }
+
+		 setTimeout(function () {
+			  contents[index].style.height = '0px';
+		 }, 25);
+	}
+
+	/**
+	 * Close all items excluding the specified one
+	 */
+	function closeAllItems (titles, contents, indexToSkip) {
+		 for (var i = 0; i < titles.length; i++) {
+			  if (i !== indexToSkip && titles[i].classList.contains(config.openedItemClass)) {
+					closeItem(titles, contents, i);
+			  }
+		 }
+	}
+
+	/**
+	 * Add automatically generated ID attributes to the contents
+	 */
+	function addIdAttributes (index, titles, contents) {
+		 for (var i = 0; i < contents.length; i++) {
+			  if (!contents[i].getAttribute('id')) {
+					var contentID = config.idFormat.replace('{{index}}', index + 1).replace('{{subindex}}', i + 1);
+					contents[i].setAttribute('id', contentID);
+					titles[i].setAttribute('aria-controls', contentID);
+			  }
+		 }
+	}
+
+	/**
+	 * Initialize ARIA attributes for toggle elements
+	 */
+	function initARIA (titles) {
+		 for (var i = 0; i < titles.length; i++) {
+			  titles[i].setAttribute('aria-expanded', 'false');
+		 }
+	}
+
+	/**
+	 * Run accordion scripts 
+	 */
+	init();
+})(window.publiiThemeAccordionConfig);
