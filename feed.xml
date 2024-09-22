@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
     <title>Kefir.info</title>
-    <link href="http://fr.kefir.info/feed.xml" rel="self" />
-    <link href="http://fr.kefir.info" />
+    <link href="https://fr.kefir.info/feed.xml" rel="self" />
+    <link href="https://fr.kefir.info" />
     <updated>2024-09-22T16:45:54+02:00</updated>
     <author>
         <name>Kefir.info</name>
     </author>
-    <id>http://fr.kefir.info</id>
+    <id>https://fr.kefir.info</id>
 
     <entry>
         <title>Notes site</title>
         <author>
             <name>Kefir.info</name>
         </author>
-        <link href="http://fr.kefir.info/notes-site.html"/>
-        <id>http://fr.kefir.info/notes-site.html</id>
+        <link href="https://fr.kefir.info/notes-site.html"/>
+        <id>https://fr.kefir.info/notes-site.html</id>
 
         <updated>2024-09-22T16:45:54+02:00</updated>
             <summary>

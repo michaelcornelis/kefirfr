@@ -2,16 +2,16 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "Kefir.info",
     "description": "",
-    "home_page_url": "http://fr.kefir.info",
-    "feed_url": "http://fr.kefir.info/feed.json",
+    "home_page_url": "https://fr.kefir.info",
+    "feed_url": "https://fr.kefir.info/feed.json",
     "user_comment": "",
     "author": {
         "name": "Kefir.info"
     },
     "items": [
         {
-            "id": "http://fr.kefir.info/notes-site.html",
-            "url": "http://fr.kefir.info/notes-site.html",
+            "id": "https://fr.kefir.info/notes-site.html",
+            "url": "https://fr.kefir.info/notes-site.html",
             "title": "Notes site",
             "summary": "Page d'accueil Bannière principale : Image attrayante de kéfir, avec un slogan accrocheur. Introduction : Brève description du kéfir de fruits et de ses bienfaits. Menu de navigation : Liens vers les différentes sections du site. À propos Histoire du kéfir de fruits : Origines&hellip;",
             "content_html": "<h2>Page d'accueil</h2>\n<ul>\n<li><strong>Bannière principale</strong> : Image attrayante de kéfir, avec un slogan accrocheur.</li>\n<li><strong>Introduction</strong> : Brève description du kéfir de fruits et de ses bienfaits.</li>\n<li><strong>Menu de navigation</strong> : Liens vers les différentes sections du site.</li>\n</ul>\n<h2>À propos</h2>\n<ul>\n<li><strong>Histoire du kéfir de fruits</strong> : Origines et évolution.</li>\n<li><strong>Bienfaits pour la santé</strong> : Explications sur les probiotiques et les autres avantages pour la santé.</li>\n<li><strong>Notre mission</strong> : Pourquoi vous avez créé ce site et ce que vous espérez accomplir.</li>\n</ul>\n<h2>Recettes</h2>\n<ul>\n<li><strong>Recette de base</strong> : Ingrédients et étapes pour préparer du kéfir de fruits.</li>\n<li><strong>Variations</strong> : Recettes avec différents types de fruits, épices, etc.</li>\n<li><strong>Conseils &amp; Astuces</strong> : Comment ajuster le goût, la fermentation, etc.</li>\n</ul>\n<h2>FAQ</h2>\n<ul>\n<li><strong>Questions courantes</strong> : Réponses aux questions fréquentes sur le kéfir de fruits.</li>\n<li><strong>Problèmes communs</strong> : Solutions pour les problèmes que vous pourriez rencontrer (e.g., kéfir qui ne fermente pas).</li>\n</ul>\n<h2>Blog</h2>\n<ul>\n<li><strong>Articles réguliers</strong> : Informations sur le kéfir, interviews d'experts, études récentes, etc.</li>\n<li><strong>Témoignages</strong> : Histoires et expériences des utilisateurs.</li>\n</ul>\n<h2>Galerie</h2>\n<ul>\n<li><strong>Photos et vidéos</strong> : Images de kéfir de fruits, processus de préparation, résultats finaux.</li>\n<li><strong>Soumissions des utilisateurs</strong> : Photos partagées par les visiteurs du site.</li>\n</ul>\n<h2>Boutique (si applicable)</h2>\n<ul>\n<li><strong>Produits</strong> : Vente de grains de kéfir, kits de démarrage, accessoires.</li>\n<li><strong>Livres &amp; Guides</strong> : Publications recommandées sur le kéfir et la fermentation.</li>\n</ul>\n<h2>Contact</h2>\n<ul>\n<li><strong>Formulaire de contact</strong> : Pour que les visiteurs puissent poser des questions ou faire des suggestions.</li>\n<li><strong>Informations de contact</strong> : Adresse e-mail, réseaux sociaux, etc.</li>\n</ul>\n<h2>Abonnement</h2>\n<ul>\n<li><strong>Newsletter</strong> : Formulaire pour s'inscrire à une newsletter avec des recettes, des conseils, et des nouvelles.</li>\n</ul>",
