@@ -9,5 +9,21 @@
         "name": "Kefir.info"
     },
     "items": [
+        {
+            "id": "https://fr.kefir.info/recette-originale-du-kefir.html",
+            "url": "https://fr.kefir.info/recette-originale-du-kefir.html",
+            "title": "Recette originale du kéfir",
+            "summary": "La recette bla bla bla ",
+            "content_html": "<p>La recette bla bla bla </p>",
+            "image": "https://fr.kefir.info/media/posts/2/Kefir.jpg",
+            "author": {
+                "name": "Kefir.info"
+            },
+            "tags": [
+                   "Recettes"
+            ],
+            "date_published": "2024-09-25T14:34:36+02:00",
+            "date_modified": "2024-09-25T14:34:36+02:00"
+        }
     ]
 }
