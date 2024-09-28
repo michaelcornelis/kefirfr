@@ -3,34 +3,38 @@
     <title>Kefir.info</title>
     <link href="https://fr.kefir.info/feed.xml" rel="self" />
     <link href="https://fr.kefir.info" />
-    <updated>2024-09-25T14:34:36+02:00</updated>
+    <updated>2024-09-28T19:17:14+02:00</updated>
     <author>
         <name>Kefir.info</name>
     </author>
     <id>https://fr.kefir.info</id>
 
     <entry>
-        <title>Recette originale du kéfir</title>
+        <title>recette 2 </title>
         <author>
             <name>Kefir.info</name>
         </author>
-        <link href="https://fr.kefir.info/recette-originale-du-kefir.html"/>
-        <id>https://fr.kefir.info/recette-originale-du-kefir.html</id>
-        <media:content url="https://fr.kefir.info/media/posts/2/Kefir.jpg" medium="image" />
+        <link href="https://fr.kefir.info/recette-2.html"/>
+        <id>https://fr.kefir.info/recette-2.html</id>
+        <media:content url="https://fr.kefir.info/media/posts/7/Kefir.jpg" medium="image" />
             <category term="Recettes"/>
 
-        <updated>2024-09-25T14:34:36+02:00</updated>
-            <summary>
-                <![CDATA[
-                        <img src="https://fr.kefir.info/media/posts/2/Kefir.jpg" alt="Recette originale du kéfir" />
-                    La recette bla bla bla 
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                    <p><img src="https://fr.kefir.info/media/posts/2/Kefir.jpg" class="type:primaryImage" alt="Recette originale du kéfir" /></p>
-                <p>La recette bla bla bla </p>
-            ]]>
-        </content>
+        <updated>2024-09-28T19:17:14+02:00</updated>
+            <summary></summary>
+        <content></content>
+    </entry>
+    <entry>
+        <title>recette test</title>
+        <author>
+            <name>Kefir.info</name>
+        </author>
+        <link href="https://fr.kefir.info/recette-test.html"/>
+        <id>https://fr.kefir.info/recette-test.html</id>
+        <media:content url="https://fr.kefir.info/media/posts/6/HERO050424A.png" medium="image" />
+            <category term="Recettes"/>
+
+        <updated>2024-09-28T19:10:44+02:00</updated>
+            <summary></summary>
+        <content></content>
     </entry>
 </feed>

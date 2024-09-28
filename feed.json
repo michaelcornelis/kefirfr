@@ -10,20 +10,32 @@
     },
     "items": [
         {
-            "id": "https://fr.kefir.info/recette-originale-du-kefir.html",
-            "url": "https://fr.kefir.info/recette-originale-du-kefir.html",
-            "title": "Recette originale du kéfir",
-            "summary": "La recette bla bla bla ",
-            "content_html": "<p>La recette bla bla bla </p>",
-            "image": "https://fr.kefir.info/media/posts/2/Kefir.jpg",
+            "id": "https://fr.kefir.info/recette-2.html",
+            "url": "https://fr.kefir.info/recette-2.html",
+            "title": "recette 2 ",
+            "image": "https://fr.kefir.info/media/posts/7/Kefir.jpg",
             "author": {
                 "name": "Kefir.info"
             },
             "tags": [
                    "Recettes"
             ],
-            "date_published": "2024-09-25T14:34:36+02:00",
-            "date_modified": "2024-09-25T14:34:36+02:00"
+            "date_published": "2024-09-28T19:17:14+02:00",
+            "date_modified": "2024-09-28T19:17:14+02:00"
+        },
+        {
+            "id": "https://fr.kefir.info/recette-test.html",
+            "url": "https://fr.kefir.info/recette-test.html",
+            "title": "recette test",
+            "image": "https://fr.kefir.info/media/posts/6/HERO050424A.png",
+            "author": {
+                "name": "Kefir.info"
+            },
+            "tags": [
+                   "Recettes"
+            ],
+            "date_published": "2024-09-28T19:10:44+02:00",
+            "date_modified": "2024-09-28T19:15:42+02:00"
         }
     ]
 }
