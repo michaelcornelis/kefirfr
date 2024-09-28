@@ -5,6 +5,9 @@
 <loc>https://fr.kefir.info/</loc>
 </url>
 <url>
+<loc>https://fr.kefir.info/authors/michael-cornelis/</loc>
+</url>
+<url>
 <loc>https://fr.kefir.info/cest-quoi-le-kefir.html</loc>
 <lastmod>2024-09-28T15:23:33+02:00</lastmod>
 </url>
@@ -23,5 +26,11 @@
 <image:loc>https://fr.kefir.info/media/posts/2/Kefir.jpg</image:loc>
 <image:title><![CDATA[Recette originale du kéfir]]></image:title>
 </image:image>
+</url>
+<url>
+<loc>https://fr.kefir.info/tags/</loc>
+</url>
+<url>
+<loc>https://fr.kefir.info/tags/recettes/</loc>
 </url>
 </urlset>
